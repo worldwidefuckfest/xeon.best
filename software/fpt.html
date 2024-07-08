@@ -12,6 +12,45 @@
         margin: 20px;
       }
 
+      img {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+
+      body {
+        max-width: 60%;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          max-width: 80%;
+          padding: 10px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          max-width: 90%;
+          padding: 5px;
+        }
+      }
+
+      .youtube-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        max-width: 100%;
+      }
+
+      .youtube-container iframe {
+        position: absolute; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
       .dropdown-btn {
         background-color: #4CAF50;
         color: #ffffff;
@@ -104,7 +143,7 @@
 	  <h3 style="margin-bottom: 0.5em;">Using FPT from a Flash Drive</h3>
       <p style="margin-bottom: 0.5em;"> FPT can be used from a flash drive, providing a convenient and portable solution for flashing firmware. The DOS version of FPT can be used from a flash drive by creating a bootable <strong>FreeDOS</strong> USB and running the <code>fpt.exe</code> executable from it. </p>
       <ol style="margin-bottom: 0.5em;">
-        <li> Use your favorite software to create a bootable USB with FreeDOS. For this example, we'll use Rufus. If you're also using Rufus, be sure to copy all the settings from the screenshot. 
+        <li> Use your favorite software to create a bootable USB with FreeDOS. For this example, we'll use Rufus. If you're also using Rufus, be sure to copy all the settings from the screenshot. <br>
 		  <img style="margin-top: 0.5em; margin-bottom: 0.5em;" src="../images/fpt_rufus.png" alt="[the screenshot]">
         </li>
         <li> Download the FPT archive from the top of this page, extract it, and move the files from the "DOS" folder in the archive onto the USB with FreeDOS. </li>
@@ -128,20 +167,10 @@
       <p style="margin-bottom: 0.5em;"> If for some reason you flashed a faulty BIOS, or zero'd it out, and you're now experiencing a postcode FF or boot issues after flashing, even after you've tried to remove the CMOS battery and completely remove power from the computer, there's still hope for recovery. </p>
 	  <p style="margin-bottom: 1em;"> If you have a backup of your original BIOS file, access to another working computer, and physical access to the motherboard, you may be able to use a chip programmer such as the CH341a, which has been proven to work reliably. </p>
 	  
-	  <iframe width="600" height="300" src="https://www.youtube.com/embed/4qX2zihB6UE" title="🇬🇧 CH341a – minimal usage guide | how to read &amp; write a motherboard BIOS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	  <div class="youtube-container">
+	    <iframe width="600" height="300" src="https://www.youtube.com/embed/4qX2zihB6UE" title="🇬🇧 CH341a – minimal usage guide | how to read &amp; write a motherboard BIOS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	  </div>
 	  <p style="margin-bottom: -0.8em;"><span class="sha256-text"> (full credit to Miyconst for the YouTube video) </p>
-	  
-      <style>
-        .content {
-          width: 40%;
-        }
-
-        @media only screen and (max-width: 768px) {
-          .content {
-            width: 100%;
-          }
-        }
-      </style>
     </div>
   </body>
 </html>
