@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>xeon.best - Intel Extreme Tuning Utility (XTU)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+	<link rel="stylesheet" href="../styles/software.css">
+  </head>
+  <body>
+    <h1>xeon.best</h1>
+    <button class="dropdown-btn" onclick="toggleDropdown()">Download</button>
+    <div class="dropdown-content" id="dropdown-content">
+      <a href="../assets/IntelXTU_7.14.2.14.zip" onclick="closeDropdown()">
+        <span>7.14.2.14 (47.2 MB)</span>
+        <span class="sha256-text">SHA256: <code>24c0f5f7a955c11ac0205a85d79e72f920e330ebf795db73f9854cbd0483efea</code></span>
+      </a>
+      <a href="../assets/IntelXTU_6.5.2.40.zip" onclick="closeDropdown()">
+        <span>6.5.2.40 (27.9 MB)</span>
+        <span class="sha256-text">SHA256: <code>ccd76aad4ad9b06b8e92652fadb90b88d054c4568ce203a264a8f7728c908311</code>
+        </span>
+      </a>
+    </div>
+    <script>
+      var dropdownContent = document.getElementById("dropdown-content");
+
+      function toggleDropdown() {
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        } else {
+          dropdownContent.style.display = "block";
+        }
+      }
+
+      function closeDropdown() {
+        setTimeout(function() {
+          dropdownContent.style.display = "none";
+        }, 100);
+      }
+      document.addEventListener("click", function(event) {
+        if (!event.target.closest(".dropdown-btn, .dropdown-content")) {
+          dropdownContent.style.display = "none";
+        }
+      });
+    </script>
+    <p style="margin-top: 10px;">
+      <a href="../software.html">
+        <button>
+          <- go back </button>
+      </a>
+    </p>
+    <div class="content">
+      <h2>Intel Extreme Tuning Utility (XTU)</h2>
+
+      <p style="margin-bottom: 0.5em;"> Intel Extreme Tuning Utility (XTU) is a powerful tool designed for advanced processor and system tuning. </p>
+      <p style="margin-bottom: 0.5em;"> XTU provides access to CPU frequency, voltage, and memory timing controls, as well as other system parameters. </p>
+      <p style="margin-bottom: 1em;"> Newer versions of XTU lack support for LGA 2011-3 and earlier processors, however, version 6.5.2.40 is still functional and supports these CPUs. </p>
+      
+	  <img style="margin-top: 0; margin-bottom: 0;" src="../images/xtu_demo.jpg" alt="[image of XTU user interface]">
+    </div>
+  </body>
+</html>
