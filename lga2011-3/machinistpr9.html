@@ -89,60 +89,9 @@
       <p style="margin-bottom: 0.5em;">The BIOS lacks read-write protection, allowing for <a href="../software/fpt.html">direct flashing with FPTW</a>. </p>
       <h3 style="margin-bottom: -1em;">BIOS Downloads</h3>
       <p style="margin-bottom: 0.5em;">⚠️ Please note that modifying the BIOS firmware may cause system instability if not done carefully.</p>
-      <p style="margin-bottom: 0.25em;">Select the modifications you want:</p>
-      <form id="options-form">
-        <label>
-          <input type="checkbox" name="options" value="turboboost">Turbo Boost Unlock </label>
-        <br>
-        <label>
-          <input type="checkbox" name="options" value="undervolt">Undervolt </label>
-        <br>
-        <div id="undervolt-comboboxes" style="display: none; margin-left: 1.5em;">
-          <label>Vcore: <select id="vcore-combobox"></select>
-          </label>
-          <label>Cache: <select id="cache-combobox"></select>
-          </label>
-          <label>Sysagent: <select id="sa-combobox"></select>
-          </label>
-        </div>
-      </form>
-      <button style="margin-top: 0.5em;" onclick="generateRedirect()">Download</button>
-      <script>
-        for (let i = 0; i <= 150; i += 5) {
-          const option = document.createElement('option');
-          option.value = `${i}`;
-          option.text = `-${i} mV`;
-          document.getElementById('vcore-combobox').appendChild(option);
-          document.getElementById('cache-combobox').appendChild(option.cloneNode(true));
-          document.getElementById('sa-combobox').appendChild(option.cloneNode(true));
-        }
-        document.getElementsByName('options')[1].addEventListener('change', function() {
-          if (this.checked) {
-            document.getElementById('undervolt-comboboxes').style.display = 'block';
-          } else {
-            document.getElementById('undervolt-comboboxes').style.display = 'none';
-          }
-        });
-
-        function generateRedirect() {
-          const options = document.getElementsByName('options');
-          let redirectUrl = '../assets/lga2011-3/machinist_x99-pr9/bios_';
-          for (let i = 0; i < options.length; i++) {
-            if (options[i].checked) {
-              if (options[i].value === 'undervolt') {
-                const vcore = document.getElementById('vcore-combobox').value;
-                const cache = document.getElementById('cache-combobox').value;
-                const sa = document.getElementById('sa-combobox').value;
-                redirectUrl += `undervolt_${vcore}_${cache}_${sa}_`;
-              } else {
-                redirectUrl += options[i].value + '_';
-              }
-            }
-          }
-          redirectUrl = redirectUrl.replace(/_$/, '') + ".bin";
-          window.location.href = redirectUrl;
-        }
-      </script>
+      <a href="../assets/lga2011-3/machinist_x99-pr9/PR9_X99HA00R_102723.bin">PR9_X99HA00R_102723.bin</a><br>
+      <a href="../assets/lga2011-3/machinist_x99-pr9/PR9_X99HA00R_102723_turboboost.bin">PR9_X99HA00R_102723_turboboost.bin</a><br>
+      <a href="../assets/lga2011-3/machinist_x99-pr9/PR9_X99HA00R_102723_turboboost_undervolt_55-30-30.bin">PR9_X99HA00R_102723_turboboost_undervolt_55-30-30.bin</a>
     </div>
   </body>
 </html>
