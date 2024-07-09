@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>xeon.best - lga 2011-3 catalog</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1" /> 
-	<link rel="stylesheet" href="../styles/software.css">
-	
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			margin: 20px;
-		}
-		h1 {
-			margin-bottom: 10px;
-		}
-		p {
-			margin-bottom: 20px;
-		}
-	</style>
-</head>
-<body>
-	<h1>xeon.best</h1>
-	<div class="choices">
-	  <a href="../lga2011-3.html"><button><- go back</button></a><br>
-		
-      <h2 style="margin-bottom: 0.5em;">MACHINIST X99-PR9</h2> 
-	  <p style="margin-bottom: 0.5em;">The MACHINIST X99-PR9 is a budget-friendly, mid-range motherboard designed for Intel Xeon processors of series E5 V3/V4. The X99-PR9 is designed for mid-range processors with a TDP of around 100W, more powerful CPUs will require extra cooling of the VRM.</p> 
-		
+  <head>
+    <title>xeon.best - lga 2011-3 catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../styles/software.css">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      h1 {
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>xeon.best</h1>
+    <div class="choices">
+      <a href="../lga2011-3.html">
+        <button>
+          <- go back </button>
+      </a>
+      <br>
+      <h2 style="margin-bottom: 0.5em;">MACHINIST X99-PR9</h2>
+      <p style="margin-bottom: 0.5em;">The MACHINIST X99-PR9 is a budget-friendly, mid-range motherboard designed for Intel Xeon processors of series E5 V3/V4. The X99-PR9 is designed for mid-range processors with a TDP of around 100W, more powerful CPUs will require extra cooling of the VRM.</p>
       <table border="1" cellpadding="5" cellspacing="0" style="margin-top: 1em;">
         <tr>
           <th colspan="2">MACHINIST X99-PR9</th>
@@ -79,10 +82,67 @@
           <td>mATX, 185x215 mm</td>
         </tr>
       </table>
-	  
-	  <h3 style="margin-bottom: 0.5em;">BIOS Capabilities</h3> 
-	  <p style="margin-bottom: 0.5em;">The stock BIOS firmware on the MACHINIST X99-PR9 offers several notable features, including unlocked memory voltage and timing control and Smart Fan support for both fan ports, including the case fan port, a rare feature in motherboards of this class.</p> 
-	  <p style="margin-bottom: 0.5em;">The BIOS lacks read-write protection, allowing for <a href="../software/fpt.html">direct flashing with FPTW</a>.</p>
-	</div>
-</body>
+      <img style="margin-top: 0.5em; margin-bottom: 0.5em;" src="../images/x99-pr9_ports.jpg" alt="[screenshot of the motherboard]">
+      <img style="margin-top: 0.5em; margin-bottom: 0.5em;" src="../images/x99_pr9_m2.jpg" alt="[screenshot of the m.2 switch]">
+      <h3 style="margin-bottom: 0.5em;">BIOS Capabilities</h3>
+      <p style="margin-bottom: 0.5em;">The stock BIOS firmware on the MACHINIST X99-PR9 offers several notable features, including unlocked memory voltage and timing control and Smart Fan support for both fan ports, including the case fan port, a rare feature in motherboards of this class.</p>
+      <p style="margin-bottom: 0.5em;">The BIOS lacks read-write protection, allowing for <a href="../software/fpt.html">direct flashing with FPTW</a>. </p>
+      <h3 style="margin-bottom: -1em;">BIOS Downloads</h3>
+      <p style="margin-bottom: 0.5em;">⚠️ Please note that modifying the BIOS firmware may cause system instability if not done carefully.</p>
+      <p style="margin-bottom: 0.25em;">Select the modifications you want:</p>
+      <form id="options-form">
+        <label>
+          <input type="checkbox" name="options" value="turboboost">Turbo Boost Unlock </label>
+        <br>
+        <label>
+          <input type="checkbox" name="options" value="undervolt">Undervolt </label>
+        <br>
+        <div id="undervolt-comboboxes" style="display: none; margin-left: 1.5em;">
+          <label>Vcore: <select id="vcore-combobox"></select>
+          </label>
+          <label>Cache: <select id="cache-combobox"></select>
+          </label>
+          <label>Sysagent: <select id="sa-combobox"></select>
+          </label>
+        </div>
+      </form>
+      <button style="margin-top: 0.5em;" onclick="generateRedirect()">Download</button>
+      <script>
+        for (let i = 0; i <= 150; i += 5) {
+          const option = document.createElement('option');
+          option.value = `${i}`;
+          option.text = `-${i} mV`;
+          document.getElementById('vcore-combobox').appendChild(option);
+          document.getElementById('cache-combobox').appendChild(option.cloneNode(true));
+          document.getElementById('sa-combobox').appendChild(option.cloneNode(true));
+        }
+        document.getElementsByName('options')[1].addEventListener('change', function() {
+          if (this.checked) {
+            document.getElementById('undervolt-comboboxes').style.display = 'block';
+          } else {
+            document.getElementById('undervolt-comboboxes').style.display = 'none';
+          }
+        });
+
+        function generateRedirect() {
+          const options = document.getElementsByName('options');
+          let redirectUrl = '../assets/lga2011-3/machinist_x99-pr9/bios_';
+          for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+              if (options[i].value === 'undervolt') {
+                const vcore = document.getElementById('vcore-combobox').value;
+                const cache = document.getElementById('cache-combobox').value;
+                const sa = document.getElementById('sa-combobox').value;
+                redirectUrl += `undervolt_${vcore}_${cache}_${sa}_`;
+              } else {
+                redirectUrl += options[i].value + '_';
+              }
+            }
+          }
+          redirectUrl = redirectUrl.replace(/_$/, '') + ".bin";
+          window.location.href = redirectUrl;
+        }
+      </script>
+    </div>
+  </body>
 </html>
