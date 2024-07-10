@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <title>xeon.best - server processor lovers, Xeon, BIOS, tools</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <meta property="og:title" content="xeon.best - for server processor lovers" />
     <meta property="og:url" content="https://xeon.best/" />
     <link rel="canonical" href="https://xeon.best/" />
@@ -13,28 +11,131 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="xeon.best - for server processor lovers" />
     <meta name="twitter:description" content="Documenting Xeon processors, newest Chinese-made motherboards, tutorials, dirt cheap hardware and BIOS modifications." />
-
     <style>
-        body {
-        			font-family: Arial, sans-serif;
-        			margin: 20px;
-        		}
-        		h1 {
-        			margin-bottom: 10px;
-        		}
-        		p {
-        			margin-bottom: 20px;
-        		}
-    </style>
-</head>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
 
-<body>
+      h1 {
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+
+      .contact-us {
+        font-size: 1.2rem;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      .contact-info {
+        display: none;
+      }
+
+      .contact-info span {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
     <h1>xeon.best</h1>
     <p>what are you looking for today?</p>
     <div class="choices">
-        <a href="software.html"><button>Software</button></a>
-        <a href="lga2011-3.html"><button>LGA 2011-3</button></a>
+      <a href="software.html">
+        <button>Software</button>
+      </a>
+      <a href="lga2011-3.html">
+        <button>LGA 2011-3</button>
+      </a>
     </div>
-</body>
+    <p class="contact-us" onclick="toggleContactInfo()">contact us</p>
+    <div class="contact-info">
+      <span>thank you for your interest :)</span>
+      <br>
+      <span>
+        <a href="https://github.com/worldwidefuckfest/xeon.best/issues" target="_blank" rel="noopener noreferrer">GitHub Issue Tracker</a>
+      </span>
+      <br>
+      <span>
+        <a href="mailto:06f2@duck.com">06f2@duck.com</a>
+      </span>
+    </div>
+    <script>
+      let contactInfoShowing = false;
+      let spamCount = 0;
+      let spamTimeout = null;
+      let warningGiven = false;
+      let finalWarningGiven = false;
 
+      function toggleContactInfo() {
+        if (spamTimeout) return;
+        const contactInfo = document.querySelector('.contact-info');
+        const spans = contactInfo.querySelectorAll('span');
+        if (!contactInfoShowing) {
+          contactInfo.style.display = 'block';
+          contactInfoShowing = true;
+          for (let i = 0; i < spans.length; i++) {
+            animateSpan(spans[i], i * 50);
+          }
+        } else {
+          for (let i = 0; i < spans.length; i++) {
+            animateSpan(spans[i], i * 50, true);
+          }
+          setTimeout(function() {
+            contactInfo.style.display = 'none';
+            contactInfoShowing = false;
+          }, 300);
+        }
+        spamCount++;
+        if (spamCount > 10 && !warningGiven) {
+          warningGiven = true;
+          document.querySelector('.contact-us').textContent = "stop touching me 😠";
+        }
+        if (spamCount > 20 && !finalWarningGiven) {
+          finalWarningGiven = true;
+          contactInfo.style.display = 'block';
+          contactInfoShowing = true;
+          setTimeout(function() {
+            for (let i = 0; i < spans.length; i++) {
+              spans[i].style.opacity = '0';
+            }
+          }, 200);
+          const randomTexts = ["you don't have to contact us... 🙄", "don't contact us 😡", "we're not listening anyway... 🙃"];
+          const randomIndex = Math.floor(Math.random() * randomTexts.length);
+          const randomText = randomTexts[randomIndex];
+          document.querySelector('.contact-us').textContent = randomText;
+          document.querySelector('.contact-us').onclick = null;
+        }
+      }
+
+      function animateSpan(span, delay, reverse) {
+        let opacity = reverse ? 1 : 0;
+        let interval = setInterval(function() {
+          if (reverse) {
+            opacity -= 0.1;
+            if (opacity <= 0) {
+              clearInterval(interval);
+              span.style.opacity = '0';
+            } else {
+              span.style.opacity = opacity.toString();
+            }
+          } else {
+            opacity += 0.1;
+            if (opacity >= 1) {
+              clearInterval(interval);
+              span.style.opacity = '1';
+            } else {
+              span.style.opacity = opacity.toString();
+            }
+          }
+        }, 20);
+        setTimeout(function() {
+          clearInterval(interval);
+        }, delay + 300);
+      }
+    </script>
+  </body>
 </html>
