@@ -1,11 +1,3 @@
-User-agent: Googlebot
-Allow: *
-Disallow:
-
-User-agent: AdsBot-Google
-Allow: *
-Disallow:
-
-User-agent: Googlebot-Image
+User-agent: *
 Allow: *
 Disallow:
