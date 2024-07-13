@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td>Chipset</td>
-                <td>B85/Q85</td>
+                <td>B85/Q85/Z97</td>
             </tr>
             <tr>
                 <td>CPU Support</td>
@@ -48,7 +48,7 @@
             </tr>
             <tr>
                 <td>Memory Support</td>
-                <td>4x DDR4 DIMM 2133/2400/2666/3000/3200/3600 MHz, Dual Channel, ECC REG, max. 128 GB</td>
+                <td>4x DDR4 DIMM 2133/2400/2666/3000/3200/3600 MHz, <strong>Dual</strong> Channel, Non-ECC, max. 128 GB</td>
             </tr>
             <tr>
                 <td>Memory Timings & Voltage Control</td>
@@ -60,7 +60,7 @@
             </tr>
             <tr>
                 <td>Storage</td>
-                <td>1x M.2 (NVMe + SATA dual-mode), 1x SATA 3.0, 2x SATA 2.0</td>
+                <td>1x M.2 (NVMe + SATA dual-mode), 3x SATA 3.0</td>
             </tr>
             <tr>
                 <td>Back Panel</td>
@@ -81,9 +81,71 @@
         </table>
         <img style="margin-top: 0.5em; margin-bottom: 0.5em;" src="../images/x99-pr9_ports.jpg" alt="[screenshot of the motherboard]">
         <img style="margin-top: 0.5em; margin-bottom: 0.5em;" src="../images/x99_pr9_m2.jpg" alt="[screenshot of the m.2 switch]">
+
+        <h3>VRM Temperatures</h3>
+        <p style="margin-bottom: 0.5em;">The following is a test of the VRM temperatures under extreme stress-test conditions.</p>
+        <table border="1" cellpadding="5" cellspacing="0" style="margin-top: 1em;">
+            <tr>
+                <th>Feature</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>CPU</td>
+                <td>Intel Xeon E5-2697 v3 (turbo unlocked, 14C/28T, <strong>145W</strong>, 3.6 GHz)</td>
+            </tr>
+            <tr>
+                <td>Undervolted?</td>
+                <td><strong>Yes</strong> (50-50-50)</td>
+            </tr>
+            <tr>
+                <td>Software</td>
+                <td>AIDA64 (CPU + FPU + Cache + Memory)</td>
+            </tr>
+            <tr>
+                <td>CPU Cooling</td>
+                <td>High-RPM stock Intel cooler</td>
+            </tr>
+            <tr>
+                <td>VRM Cooling</td>
+                <td>Stock Heatsink/Fan</td>
+            </tr>
+            <tr>
+                <td>Stress Time</td>
+                <td>~30 minutes</td>
+            </tr>
+        </table>
+
+        <table border="1" cellpadding="5" cellspacing="0" style="margin-top: 0.1em;">
+            <tr>
+                <th>Sensor</th>
+                <th>Temperature</th>
+            </tr>
+            <tr>
+                <td>CPU Package</td>
+                <td>77 °C (82 °C max.)</td>
+            </tr>
+            <tr>
+                <td>CPU Cores</td>
+                <td>81 °C</td>
+            </tr>
+            <tr>
+                <td>Room (Ambient)</td>
+                <td>21.2 °C</td>
+            </tr>
+            <tr>
+                <td>VRM (Top)</td>
+                <td>55.2 - 63.9 °C</td>
+            </tr>
+            <tr>
+                <td>VRM (Bottom)</td>
+                <td>62.8 - 70.1 °C</td>
+            </tr>
+        </table>
+
         <h3 style="margin-bottom: 0.5em;">BIOS Capabilities</h3>
-        <p style="margin-bottom: 0.5em;">The stock BIOS firmware on the MACHINIST X99-PR9 offers several notable features, including unlocked memory voltage and timing control and Smart Fan support for both fan ports, including the case fan port, a rare feature in motherboards of this class.</p>
-        <p style="margin-bottom: 0.5em;">The BIOS lacks read-write protection by default, allowing for <a href="../software/fpt.html">direct flashing with FPTW</a>. 😍</p>
+        <p style="margin-bottom: 0.5em;">The stock BIOS firmware on the MACHINIST X99-PR9 is incredibly stable and offers several notable features, including accurate power consumption sensors, unlocked Memory Voltage and Timing Control and Smart Fan support for both fan headers, including the case fan header, a rare feature in motherboards of this class.</p>
+        <p style="margin-bottom: 0.5em;">For the weak side of the firwmare, it lacks support for sleep mode and only supports dual-channel memory.</p>
+        <p style="margin-bottom: 0.5em;">The BIOS lacks read-write protection by default, allowing for <a href="../software/fpt.html">direct flashing with FPTW</a>, but due to the usage of the FM25W128, FPT requires a custom fparts.txt (our version of FPT has it).</p>
         <h3 style="margin-bottom: -1em;">BIOS Downloads</h3>
         <p style="margin-bottom: 0.5em;">⚠️ Please note that modifying the BIOS firmware may cause system instability if not done carefully.</p>
         <a href="../assets/lga2011-3/machinist_x99-pr9/PR9_X99HA00R_102723.bin">PR9_X99HA00R_102723.bin</a><br>
